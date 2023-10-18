@@ -15,7 +15,7 @@ int my_strlen(char *s)
 		s++;
 	}
 	return (y);
-} 
+}
 /**
  * my_strdup -  return ptr to new mem
  * @str: input str

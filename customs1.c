@@ -15,13 +15,13 @@ int my_strlen(char *s)
 		s++;
 	}
 	return (y);
-}
+} 
 /**
- * _strdup -  return ptr to new mem
+ * my_strdup -  return ptr to new mem
  * @str: input str
  * Return: NULL if str is NULL or success otherwise
  */
-char *_strdup(char *str)
+char *my_strdup(char *str)
 {
 	size_t u;
 	char *copy;

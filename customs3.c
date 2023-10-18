@@ -48,3 +48,25 @@ int my_strncmp(const char *s1, const char *s2, size_t n)
 
 	return (0);
 }
+/**
+ * *my_strcpy - func copies the string pointed
+ * @dest: copy to
+ * @src: copy from
+ * Return: string
+ */
+char *my_strcpy(char *dest, char *src)
+{
+	int k = 0;
+	int c = 0;
+
+	while (*(src + k) != '\0')
+	{
+		k++;
+	}
+	for (; c < k; c++)
+	{
+		dest[c] = src[c];
+	}
+	dest[k] = '\0';
+	return (dest);
+}

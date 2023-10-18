@@ -45,11 +45,11 @@ void get_path(void);
 void *custom_realloc(void *ptr, size_t size);
 char *_memcpy(char *dest, char *src, unsigned int n);
 char *my_strtok(char *str, const char *delim);
-char *my_strdup(char *str);
-int my_strlen(char *s);
+char *my_strdup(const char *str);
+int my_strlen(const char *s);
 size_t my_strcspn(const char *s, const char *n);
 int my_strcmp(char *s1, char *s2);
 int my_strncmp(const char *s1, const char *s2, size_t n);
-char *my_strcpy(char *dest, char *src);
+char *my_strcpy(char *dest, const char *src);
 
 #endif

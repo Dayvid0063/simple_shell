@@ -54,7 +54,7 @@ int my_strncmp(const char *s1, const char *s2, size_t n)
  * @src: copy from
  * Return: string
  */
-char *my_strcpy(char *dest, char *src)
+char *my_strcpy(char *dest, const char *src)
 {
 	int k = 0;
 	int c = 0;

@@ -5,7 +5,7 @@
  * @s: string
  * Return: length
  */
-int my_strlen(char *s)
+int my_strlen(const char *s)
 {
 	int y = 0;
 
@@ -21,7 +21,7 @@ int my_strlen(char *s)
  * @str: input str
  * Return: NULL if str is NULL or success otherwise
  */
-char *my_strdup(char *str)
+char *my_strdup(const char *str)
 {
 	size_t u;
 	char *copy;

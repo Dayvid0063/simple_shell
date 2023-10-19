@@ -1,8 +1,10 @@
 #include "shell.h"
 /**
- * simple_shell - Func runs shell
+ * main - Main function
+ *
+ * Return: 0
  */
-void simple_shell(void)
+int main(void)
 {
 	char *input = NULL;
 	size_t n = 0;
@@ -10,16 +12,17 @@ void simple_shell(void)
 
 	while (1)
 	{
-		prompt();
 		read_n = read_command(&input, &n);
 		if (read_n == -1)
 		{
 			break;
 		}
+
 		if (input[0] == '#')
 		{
 			continue;
 		}
+
 		input[strcspn(input, "\n")] = 0;
 		if (strlen(input) == 0)
 		{
@@ -30,5 +33,7 @@ void simple_shell(void)
 			split_string(input);
 		}
 	}
+
 	free(input);
+	return (0);
 }

@@ -37,9 +37,7 @@ typedef struct info
 } info_t;
 
 extern char **environ;
-void simple_shell(void);
 ssize_t read_command(char **input, size_t *n);
-void prompt(void);
 int main(void);
 void execute(char **tokens);
 int run_exit(char **tokens);

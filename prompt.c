@@ -1,20 +1,6 @@
 #include "shell.h"
 /**
- * prompt - func sh prompt
- */
-void prompt(void)
-{
-	int is_terminal = isatty(STDIN_FILENO);
-
-	if (is_terminal)
-	{
-		write(STDOUT_FILENO, "$ ", 2);
-		fflush(stdout);
-	}
-}
-
-/**
- * read_command - Reads a cmd.
+ * read_command - Reads a cmd and displays a prompt
  * @input: Ptr to store input
  * @n: Ptr to size of input
  *
@@ -22,8 +8,14 @@ void prompt(void)
  */
 ssize_t read_command(char **input, size_t *n)
 {
-	int is_terminal = isatty(STDIN_FILENO);
 	ssize_t read;
+	int is_terminal = isatty(STDIN_FILENO);
+
+	if (is_terminal)
+	{
+		write(STDOUT_FILENO, "$ ", 2);
+		fflush(stdout);
+	}
 
 	read = getline(input, n, stdin);
 	if (!is_terminal && read == -1)
@@ -44,3 +36,4 @@ ssize_t read_command(char **input, size_t *n)
 
 	return (read);
 }
+

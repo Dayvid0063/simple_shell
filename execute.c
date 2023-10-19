@@ -41,7 +41,7 @@ void split_string(char *str)
 {
 	char *token;
 	char *delimiter = " \t\n";
-	char *str_cpy = my_strdup(str);
+	char *str_cpy = strdup(str);
 	char **tokens = malloc(sizeof(char *) * MAX_LINE_LENGTH);
 	int count = 0, u;
 
@@ -57,10 +57,10 @@ void split_string(char *str)
 		free(tokens);
 		exit(EXIT_FAILURE);
 	}
-	token = my_strtok(str_cpy, delimiter);
+	token = strtok(str_cpy, delimiter);
 	while (token != NULL)
 	{
-		tokens[count] = my_strdup(token);
+		tokens[count] = strdup(token);
 
 		if (tokens[count] == NULL)
 		{
@@ -68,7 +68,7 @@ void split_string(char *str)
 			exit(EXIT_FAILURE);
 		}
 		count++;
-		token = my_strtok(NULL, delimiter);
+		token = strtok(NULL, delimiter);
 	}
 	tokens[count] = NULL;
 
@@ -97,16 +97,16 @@ char *search_path(const char *c_name)
 {
 	char path[1024];
 	char *dir;
-	const char *find_dir = my_getenv("PATH");
-	char *path_cpy = my_strdup(find_dir);
-	char *path_cpy2 = my_strdup(path_cpy);
+	const char *find_dir = getenv("PATH");
+	char *path_cpy = strdup(find_dir);
+	char *path_cpy2 = strdup(path_cpy);
 
 	if (!path_cpy)
 	{
 		perror("Path not specified");
 		return (NULL);
 	}
-	dir = my_strtok(path_cpy2, ":");
+	dir = strtok(path_cpy2, ":");
 	while (dir != NULL)
 	{
 		snprintf(path, sizeof(path), "%s/%s", dir, c_name);
@@ -114,9 +114,9 @@ char *search_path(const char *c_name)
 		{
 			free(path_cpy);
 			free(path_cpy2);
-			return (my_strdup(path));
+			return (strdup(path));
 		}
-		dir = my_strtok(NULL, ":");
+		dir = strtok(NULL, ":");
 	}
 	free(path_cpy);
 	free(path_cpy2);

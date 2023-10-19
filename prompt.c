@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * prompt - func sh prompt
  */
@@ -26,19 +25,7 @@ ssize_t read_command(char **input, size_t *n)
 	int is_terminal = isatty(STDIN_FILENO);
 	ssize_t read;
 
-	if (is_terminal)
-	{
-		char *prompt = "$ ";
-
-		if (write(STDOUT_FILENO, prompt, 2) == -1)
-		{
-			perror("write error");
-			return (-1);
-		}
-	}
-
 	read = getline(input, n, stdin);
-
 	if (!is_terminal && read == -1)
 	{
 		return (-1);

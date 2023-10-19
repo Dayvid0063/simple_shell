@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * simple_shell - Func runs shell
  */
@@ -15,7 +14,6 @@ void simple_shell(void)
 		read_n = read_command(&input, &n);
 		if (read_n == -1)
 		{
-			write(STDOUT_FILENO, "\n", 1);
 			break;
 		}
 		if (input[0] == '#')

@@ -9,6 +9,11 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <stddef.h>
+#include <limits.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <time.h>
+#include <math.h>
 
 #define MAX_LINE_LENGTH 1024
 

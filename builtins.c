@@ -10,14 +10,14 @@ int run_cd(char **tokens)
 {
 	char *last_pwd = getcwd(NULL, 0);
 	char *current_dir = tokens[1] == NULL ||
-		my_strcmp(tokens[1], "~") == 0 ? my_getenv("HOME") : tokens[1];
+		strcmp(tokens[1], "~") == 0 ? getenv("HOME") : tokens[1];
 	char *absolute_path;
 
-	if (my_strcmp(tokens[0], "cd") == 0)
+	if (strcmp(tokens[0], "cd") == 0)
 	{
-		if (my_strcmp(current_dir, "-") == 0)
+		if (strcmp(current_dir, "-") == 0)
 		{
-			current_dir = my_getenv("OLDPWD");
+			current_dir = getenv("OLDPWD");
 			if (!current_dir)
 			{
 				write(STDOUT_FILENO, "ERROR : Invalid directory\n", 27);
@@ -27,14 +27,14 @@ int run_cd(char **tokens)
 		}
 		if (current_dir[0] != '/')
 		{
-			absolute_path = malloc(my_strlen(last_pwd) + my_strlen(current_dir) + 2);
+			absolute_path = malloc(strlen(last_pwd) + strlen(current_dir) + 2);
 			if (absolute_path == NULL)
 			{
 				perror("No such file or directory");
 				free(last_pwd);
 				return (1);
 			}
-			snprintf(absolute_path, my_strlen(last_pwd) + my_strlen(current_dir)
+			snprintf(absolute_path, strlen(last_pwd) + strlen(current_dir)
 					+ 2, "%s/%s", last_pwd, current_dir);
 
 			if (chdir(absolute_path) != 0)
@@ -44,7 +44,7 @@ int run_cd(char **tokens)
 				free(last_pwd);
 				return (1);
 			}
-			if (my_strcmp(absolute_path, my_getenv("OLDPWD")) != 0)
+			if (strcmp(absolute_path, getenv("OLDPWD")) != 0)
 			{
 				setenv("OLDPWD", last_pwd, 1);
 			}
@@ -59,7 +59,7 @@ int run_cd(char **tokens)
 				free(last_pwd);
 				return (1);
 			}
-			if (my_strcmp(current_dir, my_getenv("OLDPWD")) != 0)
+			if (strcmp(current_dir, getenv("OLDPWD")) != 0)
 			{
 				setenv("OLDPWD", last_pwd, 1);
 			}
@@ -124,11 +124,11 @@ int run_unsetenv(char **tokens)
 int handle_built_in(char **tokens)
 {
 
-	if (my_strcmp(tokens[0], "setenv") == 0)
+	if (strcmp(tokens[0], "setenv") == 0)
 	{
 		return (run_setenv(tokens));
 	}
-	else if (my_strcmp(tokens[0], "unsetenv") == 0)
+	else if (strcmp(tokens[0], "unsetenv") == 0)
 	{
 		return (run_unsetenv(tokens));
 	}
@@ -136,11 +136,11 @@ int handle_built_in(char **tokens)
 	{
 		return (1);
 	}
-	else if (my_strcmp(tokens[0], "exit") == 0)
+	else if (strcmp(tokens[0], "exit") == 0)
 	{
 		return (run_exit(tokens));
 	}
-	else if (my_strcmp(tokens[0], "env") == 0)
+	else if (strcmp(tokens[0], "env") == 0)
 	{
 		return (run_env());
 	}

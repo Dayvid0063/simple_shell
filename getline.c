@@ -51,7 +51,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *m)
 		{
 
 			*n *= 2;
-			temp = custom_realloc(*lineptr, *n);
+			temp = realloc(*lineptr, *n);
 			if (temp == NULL)
 			{
 				write(STDERR_FILENO,

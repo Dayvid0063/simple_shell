@@ -18,5 +18,5 @@ void prompt(void)
  */
 ssize_t read_command(char **input, size_t *n)
 {
-	return (my_getline(input, n, stdin));
+	return (getline(input, n, stdin));
 }

@@ -22,8 +22,8 @@ void simple_shell(void)
 		{
 			continue;
 		}
-		input[my_strcspn(input, "\n")] = 0;
-		if (my_strlen(input) == 0)
+		input[strcspn(input, "\n")] = 0;
+		if (strlen(input) == 0)
 		{
 			continue;
 		}

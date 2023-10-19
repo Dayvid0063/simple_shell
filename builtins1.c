@@ -38,7 +38,7 @@ int run_env(void)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		write(STDOUT_FILENO, environ[i], my_strlen(environ[i]));
+		write(STDOUT_FILENO, environ[i], strlen(environ[i]));
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	return (1);

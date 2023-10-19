@@ -104,7 +104,7 @@ void split_string(char *str)
 
 	if (count > 0)
 	{
-		
+		if (!handle_built_in(tokens))
 		{
 			execute(tokens);
 		}

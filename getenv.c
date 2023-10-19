@@ -12,10 +12,10 @@ char *my_getenv(const char *var)
 
 	while (*environ != NULL)
 	{
-		if (my_strncmp(*environ, var, my_strlen(var)) == 0
-				&& (*environ)[my_strlen(var)] == '=')
+		if (strncmp(*environ, var, strlen(var)) == 0
+				&& (*environ)[strlen(var)] == '=')
 		{
-			val = *environ + my_strlen(var) + 1;
+			val = *environ + strlen(var) + 1;
 			break;
 		}
 		environ++;

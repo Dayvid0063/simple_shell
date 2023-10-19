@@ -54,8 +54,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *m)
 			temp = realloc(*lineptr, *n);
 			if (temp == NULL)
 			{
-				write(STDERR_FILENO,
-						"Error reallocating memory for the line buffer.\n", 48);
+				write(2, "Error reallocating memory for the line buffer.\n", 48);
 				return (-1);
 			}
 			*lineptr = temp;

@@ -14,7 +14,7 @@ void prompt(void)
 }
 
 /**
- * read_command - Reads a cmd
+ * read_command - Reads a cmd.
  * @input: Ptr to store input
  * @n: Ptr to size of input
  *
@@ -33,7 +33,7 @@ ssize_t read_command(char **input, size_t *n)
 
 	if (is_terminal && read == -1)
 	{
-		perror("getline error");
+		return (-1);
 	}
 
 	if (is_terminal && read > 0 && (*input)[read - 1] == '\n')

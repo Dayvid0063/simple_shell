@@ -1,7 +1,5 @@
 #include "shell.h"
 
-#define BUFFER_SIZE 1024
-
 /**
  * my_getline - Reads line input
  * @lineptr: Ptr to buff

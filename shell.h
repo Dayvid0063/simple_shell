@@ -12,10 +12,9 @@
 #include <limits.h>
 #include <ctype.h>
 #include <sys/types.h>
-#include <time.h>
-#include <math.h>
 
-#define MAX_LINE_LENGTH 1024
+#define MAX_LINE_LENGTH 125
+#define BUFFER_SIZE 125
 
 /**
  * struct list - Structure to represent ls

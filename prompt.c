@@ -5,8 +5,13 @@
  */
 void prompt(void)
 {
-	write(STDOUT_FILENO, "$ ", 2);
-	fflush(stdout);
+	int is_terminal = isatty(STDIN_FILENO);
+
+	if (is_terminal)
+	{
+		write(STDOUT_FILENO, "$ ", 2);
+		fflush(stdout);
+	}
 }
 
 /**
@@ -18,5 +23,37 @@ void prompt(void)
  */
 ssize_t read_command(char **input, size_t *n)
 {
-	return (getline(input, n, stdin));
+	int is_terminal = isatty(STDIN_FILENO);
+	ssize_t read;
+
+	if (is_terminal)
+	{
+		char *prompt = "$ ";
+
+		if (write(STDOUT_FILENO, prompt, 2) == -1)
+		{
+			perror("write error");
+			return (-1);
+		}
+	}
+
+	read = getline(input, n, stdin);
+
+	if (!is_terminal && read == -1)
+	{
+		return (-1);
+	}
+
+	if (is_terminal && read == -1)
+	{
+		perror("getline error");
+	}
+
+	if (is_terminal && read > 0 && (*input)[read - 1] == '\n')
+	{
+		(*input)[read - 1] = '\0';
+		read--;
+	}
+
+	return (read);
 }

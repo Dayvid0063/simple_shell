@@ -12,12 +12,25 @@
 
 #define MAX_LINE_LENGTH 1024
 
-typedef struct list {
+/**
+ * struct list - Structure to represent ls
+ * @str: string
+ * @next: ptr to the next str
+ */
+typedef struct list
+{
 	char *str;
 	struct list *next;
 } list_t;
 
-typedef struct {
+/**
+ * struct info - Structure to represent info
+ * @argc: arg count
+ * @argv: arg vector
+ * @env: environ
+ */
+typedef struct info
+{
 	int argc;
 	char **argv;
 	list_t *env;

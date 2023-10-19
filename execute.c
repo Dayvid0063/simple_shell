@@ -1,8 +1,10 @@
 #include "shell.h"
+
 /**
  * execute - Func executes command
  * @tokens: tokens
  */
+void execute(char **tokens);
 void execute(char **tokens)
 {
 	pid_t pid;
@@ -19,11 +21,28 @@ void execute(char **tokens)
 	if (pid == 0)
 	{
 		c_name = tokens[0];
-		c_path = search_path(c_name);
-		if (execve(c_path, tokens, envp) == -1)
+		if (strchr(c_name, '/'))
 		{
-			perror("execution of command failed");
-			_exit(EXIT_FAILURE);
+			if (execve(c_name, tokens, envp) == -1)
+			{
+				perror("execution of command failed");
+				_exit(EXIT_FAILURE);
+			}
+		}
+		else
+		{
+			c_path = search_path(c_name);
+
+			if (c_path == NULL)
+			{
+				fprintf(stderr, "Command not found: %s\n", c_name);
+				exit(EXIT_FAILURE);
+			}
+			if (execve(c_path, tokens, envp) == -1)
+			{
+				perror("Command failed");
+				exit(EXIT_FAILURE);
+			}
 		}
 	}
 	else
@@ -39,11 +58,22 @@ void execute(char **tokens)
 void split_string(char *str);
 void split_string(char *str)
 {
-	char *token;
+	char *token, *trim_str = str, *end;
 	char *delimiter = " \t\n";
 	char *str_cpy = strdup(str);
 	char **tokens = malloc(sizeof(char *) * MAX_LINE_LENGTH);
 	int count = 0, u;
+
+	while (*trim_str == ' ' || *trim_str == '\t')
+	{
+		trim_str++;
+	}
+	end = trim_str + strlen(trim_str) - 1;
+	while (end > trim_str && (*end == ' ' || *end == '\t'))
+	{
+		*end = '\0';
+		end--;
+	}
 
 	if (!str_cpy)
 	{
@@ -84,7 +114,6 @@ void split_string(char *str)
 		free(tokens[u]);
 	}
 	free(tokens);
-	free(str_cpy);
 }
 
 /**

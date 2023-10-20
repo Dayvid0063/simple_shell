@@ -14,11 +14,9 @@
 
 extern char **environ;
 int main(int arc, char **argv);
-int run_cd(char **tokens);
 int run_setenv(char **tokens);
 int run_unsetenv(char **tokens);
 int handle_built_in(char **tokens);
-int run_exit(char **tokens);
 int run_env(void);
 ssize_t read_command(char **line, size_t *n);
 void split_string(char *str);

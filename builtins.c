@@ -1,5 +1,4 @@
-#include "shell.h"
-
+#include "main.h"
 /**
  * run_cd - Func runs the cd command
  * @tokens: list of tokens
@@ -71,7 +70,6 @@ int run_cd(char **tokens)
 
 	return (0);
 }
-
 /**
  * run_setenv - run the setenv command
  * @tokens: the setenv tokens

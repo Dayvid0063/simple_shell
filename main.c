@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * read_command - read input from the line
  * @line: line pointer
@@ -89,7 +88,6 @@ void split_string(char *str)
 	}
 	free(tokens);
 }
-
 /**
  * main - Simple shell main function
  * @arc: argument count

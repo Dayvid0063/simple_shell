@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  * run_exit - runs the exit command
  * @tokens: list of tokens

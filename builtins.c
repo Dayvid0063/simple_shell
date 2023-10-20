@@ -1,8 +1,8 @@
 #include "main.h"
 /**
- * run_setenv - run the setenv command
- * @tokens: the setenv tokens
- * Return: 1 on success and 0 on failure
+ * run_setenv - Func run setenv
+ * @tokens: Tokens
+ * Return: 1 on success, 0 otherwise
  */
 int run_setenv(char **tokens)
 {
@@ -22,9 +22,9 @@ int run_setenv(char **tokens)
 	return (1);
 }
 /**
- * run_unsetenv - run the unsetenv command
- * @tokens: list of tokens
- * Return: 1 on success, 0 on failure
+ * run_unsetenv - Func run unsetenv
+ * @tokens: Tokens
+ * Return: 1 on success, 0 otherwise
  */
 int run_unsetenv(char **tokens)
 {
@@ -42,26 +42,4 @@ int run_unsetenv(char **tokens)
 		}
 	}
 	return (1);
-}
-/**
- * handle_built_in - Handle built-in commands
- * @tokens: Tokenized command and arguments
- * Return: 1 if a built-in command was handled, 0 otherwise
- */
-int handle_built_in(char **tokens)
-{
-
-	if (strcmp(tokens[0], "setenv") == 0)
-	{
-		return (run_setenv(tokens));
-	}
-	else if (strcmp(tokens[0], "unsetenv") == 0)
-	{
-		return (run_unsetenv(tokens));
-	}
-	else if (strcmp(tokens[0], "env") == 0)
-	{
-		return (run_env());
-	}
-	return (0);
 }

@@ -1,9 +1,9 @@
-#include "shell.h"
+#include "main.h"
 /**
- * read_command - read input from the line
- * @line: line pointer
- * @n: line size
- * Return: 0 Always
+ * read_command - Func reads input
+ * @line: line ptr
+ * @n: Size
+ * Return: 0
  */
 ssize_t read_command(char **line, size_t *n)
 {
@@ -34,4 +34,3 @@ ssize_t read_command(char **line, size_t *n)
 
 	return (read);
 }
-

@@ -1,4 +1,5 @@
-#include "main.h"
+#include "shell.h"
+
 /**
  * execute - Func executes command
  * @tokens: tokens
@@ -51,6 +52,71 @@ void execute(char **tokens)
 }
 
 /**
+ * split_string - Func split a string into tokens
+ * @str: Input string
+ */
+void split_string(char *str);
+void split_string(char *str)
+{
+	char *token, *trim_str = str, *end;
+	char *delimiter = " \t\n";
+	char *str_cpy = strdup(str);
+	char **tokens = malloc(sizeof(char *) * MAX_LINE_LENGTH);
+	int count = 0, u;
+
+	while (*trim_str == ' ' || *trim_str == '\t')
+	{
+		trim_str++;
+	}
+	end = trim_str + strlen(trim_str) - 1;
+	while (end > trim_str && (*end == ' ' || *end == '\t'))
+	{
+		*end = '\0';
+		end--;
+	}
+
+	if (!str_cpy)
+	{
+		perror("String not available");
+		free(str_cpy);
+		exit(EXIT_FAILURE);
+	}
+	if (!tokens)
+	{
+		perror("No tokens available");
+		free(tokens);
+		exit(EXIT_FAILURE);
+	}
+	token = strtok(str_cpy, delimiter);
+	while (token != NULL)
+	{
+		tokens[count] = strdup(token);
+
+		if (tokens[count] == NULL)
+		{
+			perror("String tokenizing failed");
+			exit(EXIT_FAILURE);
+		}
+		count++;
+		token = strtok(NULL, delimiter);
+	}
+	tokens[count] = NULL;
+
+	if (count > 0)
+	{
+		if (!handle_built_in(tokens))
+		{
+			execute(tokens);
+		}
+	}
+	for (u = 0; u < count; u++)
+	{
+		free(tokens[u]);
+	}
+	free(tokens);
+}
+
+/**
  * search_path - Search for command full path
  * @c_name: Command name
  *
@@ -85,4 +151,3 @@ char *search_path(const char *c_name)
 	free(path_cpy2);
 	return (NULL);
 }
-

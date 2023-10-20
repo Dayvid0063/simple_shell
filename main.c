@@ -45,7 +45,6 @@ void split_string(char *str)
 {
 	char *token, *trim_str = str, *end;
 	char *delimiter = " \t\n";
-	char *str_cpy = strdup(str);
 	char **tokens = malloc(sizeof(char *) * MAX_LINE_LENGTH);
 	int count = 0, u;
 
@@ -59,20 +58,13 @@ void split_string(char *str)
 		*end = '\0';
 		end--;
 	}
-
-	if (!str_cpy)
-	{
-		perror("String not available");
-		free(str_cpy);
-		exit(EXIT_FAILURE);
-	}
 	if (!tokens)
 	{
 		perror("No tokens available");
-		free(tokens);
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(str_cpy, delimiter);
+	token = strtok(trim_str, delimiter);
+
 	while (token != NULL)
 	{
 		tokens[count] = strdup(token);

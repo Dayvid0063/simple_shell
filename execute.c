@@ -8,8 +8,8 @@ void execute(char **tokens)
 {
 	pid_t pid;
 	int status;
-	char *envp[] = {"TERM=xterm", NULL};
 	char *c_name, *c_path;
+	char *envp[] = {"TERM=xterm", NULL};
 
 	pid = fork();
 	if (pid == -1)
@@ -17,15 +17,16 @@ void execute(char **tokens)
 		perror("execution of command failed");
 		exit(EXIT_FAILURE);
 	}
-	if (pid == 0)
+	else if (pid == 0)
 	{
 		c_name = tokens[0];
+
 		if (strchr(c_name, '/'))
 		{
 			if (execve(c_name, tokens, envp) == -1)
 			{
 				perror("execution of command failed");
-				_exit(EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 			}
 		}
 		else

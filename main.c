@@ -80,7 +80,10 @@ void split_string(char *str)
 
 	if (count > 0)
 	{
-		execute(tokens);
+		if(!handle_built_in(tokens))
+		{
+			execute(tokens);
+		}
 	}
 	for (u = 0; u < count; u++)
 	{
